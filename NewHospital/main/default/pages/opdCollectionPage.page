@@ -1,0 +1,23 @@
+<apex:page controller="opdCollection" docType="html-5.0">
+     <center><h1>
+        Opd Collection 
+        </h1></center>
+    <apex:form >
+       <apex:input type="date" value="{!startDate}" required="true">StartDate</apex:input>
+        <apex:commandButton action="{!searchCollection}" value="Search" reRender="dataWrapperPanel" lang="EndDate"/>
+        <apex:outputPanel id="dataWrapperPanel">
+            <apex:pageBlock title="Opd Collection" id="dataBlock" rendered="{!showResult}">
+            <apex:pageBlockSection >
+                <apex:pageBlockTable value="{!OpdCollectList}" var="o">
+                    <apex:column value="{!o.patientId__c}"/>
+                   
+                     <apex:column value="{!o.ConsultantId__c}"/>
+                     <apex:column value="{!o.Amount__c}"/>
+                </apex:pageBlockTable>
+                
+                </apex:pageBlockSection>
+           </apex:pageBlock>
+        <apex:outputLabel id="noResultFound" rendered="true">No RecordFound </apex:outputLabel>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

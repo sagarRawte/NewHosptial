@@ -1,0 +1,67 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 02-10-2023
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <div class="slds-card" style="font-family: 'Open Sans', sans-serif">
+
+        <!-- Header -->
+        <header class="slds-card__header slds-media slds-media_center">
+            <div class="slds-media__figure">
+                <lightning-icon icon-name="standard:Doctor" size="small"></lightning-icon>
+            </div>
+            <div class="slds-media__body slds-card__header-title slds-text-title_bold" style="font-size: 14px">
+                Create  Doctor
+            </div>
+        </header>
+
+        <!-- Table -->
+        <table class="slds-table slds-table_bordered slds-no-row-hover slds-table_cell-buffer" role="grid">
+            <thead>
+            <tr>
+                <th scope="col" height="22" style="width: 3rem">Nr.</th>
+                <th scope="col" height="22">First_Name__c</th>
+                <th scope="col" height="22">Last_Name__c</th>
+               
+                <th scope="col" height="22" style="width: 3rem"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <template for:each={listOfDoctors} for:item="rec">
+                <tr key={rec} class="slds-hint-parent">
+                    <td style="font-weight: bold">
+                        <lightning-formatted-number value={rec.index}></lightning-formatted-number>.
+                    </td>
+
+                    <td>
+                        <lightning-input type="text" variant="label-hidden" label="" data-id={rec.index} name="First_Name__c" value={rec.First_Name__c} onchange={handleInputChange}></lightning-input>
+                    </td>
+
+                    <td>
+                        <lightning-input type="text" variant="label-hidden" label="" data-id={rec.index} name="Last_Name__c" value={rec.Last_Name__c} onchange={handleInputChange}></lightning-input>
+                    </td>
+
+                   
+
+                    <td>
+                        <lightning-button-icon icon-name="utility:delete" alternative-text="Remove" title="Remove" name={rec.index} onclick={removeRow}></lightning-button-icon>
+                    </td>
+                </tr>
+            </template>
+            </tbody>
+        </table>
+        <div class="slds-p-left_small slds-p-vertical_small">
+            <lightning-button class="slds-p-right_small" variant="destructive" label="delete all rows" title="delete all rows" icon-name="utility:recycle_bin_full" onclick={removeAllRows}></lightning-button>
+            <lightning-button variant="neutral" label="add additional row" title="add additional row" icon-name="utility:add" onclick={addNewRow}></lightning-button>
+        </div>
+
+        <!-- Footer -->
+        <footer class="slds-modal__footer" style="padding: 0.50rem 1rem;">
+            <lightning-button icon-name="utility:save" variant="brand" label="Create Doctors" title="Create Doctors" onclick={createDoctors}></lightning-button>
+        </footer>
+    </div>
+    
+</template>

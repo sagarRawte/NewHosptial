@@ -1,0 +1,69 @@
+<apex:page controller="demopatientController"  >
+      <apex:form id="fm">
+          <apex:outputLabel >Patient Name</apex:outputLabel>
+          <apex:inputText value="{!textkey}"/>
+          <apex:commandButton value="Search Patient" action="{!doSearch}"/>
+          
+        <apex:pageBlock id="pb" mode="edit" rendered="true">
+            <apex:variable var="rowNumber" value="{!0}"/> 
+            <apex:pageBlockTable value="{!accList}" var="ac" width="1%">
+                <apex:column style="width:1Px"  headerValue="Date">
+                    <apex:inputField value="{!ac.Followup_Date__c}" style="width:80Px" />
+                </apex:column>
+                <apex:column style="width:1Px" headerValue="Height">
+                    <apex:inputField value="{!ac.Height__c}" style="width:50Px"/>
+                </apex:column>
+                <apex:column style="width:1Px" headerValue="Weight">
+                    <apex:inputField value="{!ac.Weight__c}" style="width:50Px"/>
+                </apex:column>
+                <apex:column style="width:1Px" headerValue="bloodUrea">
+                    <apex:inputField value="{!ac.bloodUrea__c}" style="width:50Px"/>
+                </apex:column>
+                 <apex:column style="width:1Px" headerValue="HB">
+                    <apex:inputField value="{!ac.HB__c}" style="width:50Px"/>
+                </apex:column>
+                 <apex:column headerValue="srCreatine"  style="width:1Px">
+                    <apex:inputField value="{!ac.srCreatine__c}" style="width:50Px"/>
+                </apex:column>
+                 <apex:column headerValue="UrineProtein">
+                    <apex:inputField value="{!ac.UrineProtein__c}" style="width:50Px"/>
+                </apex:column>
+                 <apex:column headerValue="UrinePC">
+                    <apex:inputField value="{!ac.UrinePC__c}" style="width:50Px"/>
+                </apex:column>
+                 <apex:column headerValue="UrinePH">
+                    <apex:inputField value="{!ac.UrinePH__c}" style="width:50Px"/>
+                </apex:column>
+                 <apex:column headerValue="Urine24HR">
+                    <apex:inputField value="{!ac.Urine24HR__c}" style="width:50Px"/>
+                </apex:column>
+                 <apex:column headerValue="UrineRBC">
+                    <apex:inputField value="{!ac.UrineRBC__c}" style="width:50Px"/>
+                </apex:column>
+                 <apex:column headerValue="serumChloesterol">
+                    <apex:inputField value="{!ac.serumChloesterol__c}" style="width:50Px"/>
+                </apex:column>
+                 <apex:column headerValue="serumAlbumin">
+                    <apex:inputField value="{!ac.serumAlbumin__c}" style="width:50Px"/>
+                </apex:column>
+                 <apex:column headerValue="Others1">
+                     <apex:inputField value="{!ac.Others1__c}" style="width:50Px"/>
+                </apex:column>
+                <apex:column headerValue="Others2">
+                    <apex:inputField value="{!ac.Others2__c}" style="width:50Px"/>
+                </apex:column>
+                
+                <apex:column headerValue="Action" >
+                    <apex:commandButton value="Delete" action="{!deleteRow}" reRender="pb">
+                        <apex:param name="rowIndex" value="{!rowNumber}"/>
+                    </apex:commandButton>
+                    <apex:variable var="rowNumber" value="{!rowNumber}"/>
+                </apex:column>
+            </apex:pageBlockTable>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Add Row" action="{!addRow}"/>
+                <apex:commandButton value="Save Accounts" action="{!saveAccount}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
